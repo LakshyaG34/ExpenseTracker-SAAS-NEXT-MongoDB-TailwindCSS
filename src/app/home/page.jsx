@@ -32,7 +32,7 @@ const Home = () =>{
                 {
                     expense.length > 0 ? (
                         expense.map((exp)=>(
-                            <ExpenseCard key = {exp.id} amount = {exp.amount}/>
+                            <ExpenseCard key = {exp.id} amount = {exp.amount} type = {exp.type} date={exp.date}/>
                         ))
                     ) : 
                     <p>No Expenses</p>

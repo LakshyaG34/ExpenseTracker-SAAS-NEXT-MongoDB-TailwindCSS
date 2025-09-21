@@ -1,10 +1,11 @@
 import React from "react"
 
 
-const ExpenseCard = ({amount}) =>{
+const ExpenseCard = ({amount, type, date}) =>{
     return(
         <div>
-            The expense amount is Rs{amount}
+            <span>The {type} amount is Rs{amount}</span>
+            <span>The expense date is {date}</span>
         </div>
     )
 }
