@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken"
 import {cookies} from "next/headers"
+import User from "@/models/User";
 
 export async function GET(){
     try{
@@ -10,6 +11,7 @@ export async function GET(){
             return new Response(JSON.stringify({isLoggedIn : false}), {status:200})
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id).select("name email");
         return new Response(JSON.stringify({isLoggedIn : true, user : decoded}), {status : 200});
     }catch(err)
     {

@@ -18,15 +18,15 @@ const expenseSchema = mongoose.Schema({
     category:{
         type : mongoose.Schema.Types.ObjectId,
         ref : "Category",
-        required : true
+        // required : true
     },
     description : {
         type : String
     },
     date:{
         type : Date,
-        default : Date.now()
+        default : Date.now
     },
-},{Timestamp : true})
+},{timestamps : true})
 
 export default mongoose.models.Expense || mongoose.model("Expense", expenseSchema);

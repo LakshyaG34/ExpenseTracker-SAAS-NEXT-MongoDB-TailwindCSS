@@ -22,7 +22,7 @@ export async function POST(req){
             return new Response(JSON.stringify({error : "Wrong Passwords"}), {status : 400});
         }
 
-        const token = jwt.sign({id : user._id, email : user.email}, process.env.JWT_SECRET, {
+        const token = jwt.sign({id : user._id, email : user.email, name : user.name}, process.env.JWT_SECRET, {
             expiresIn : "7d"
         });
 
