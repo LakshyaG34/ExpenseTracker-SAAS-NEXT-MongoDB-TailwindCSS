@@ -44,7 +44,7 @@ export async function GET(req){
                 { status: 400 }
             );
         }
-        const expenses = await Expense.find({user : userId}).populate("user", "name email").sort({date : -1});
+        const expenses = await Expense.find({user : userId}).populate("user", "name email").populate("category").sort({date : -1});
 
         return new Response(JSON.stringify(expenses), {status : 200});
     }catch(err)

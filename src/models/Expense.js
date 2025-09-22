@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
+import User from "./User";
+import Category from "./Category";
 
-const expenseSchema = mongoose.Schema({
+const expenseSchema = new mongoose.Schema({
     user:{
         type : mongoose.Schema.Types.ObjectId,
         ref : "User",

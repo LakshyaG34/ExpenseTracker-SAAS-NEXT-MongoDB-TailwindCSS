@@ -14,6 +14,6 @@ const userSchema = mongoose.Schema({
         required : true
     }
     
-}, {Timestamp : true})
+}, {timestamps : true})
 
 export default mongoose.models.User || mongoose.model("User", userSchema);
