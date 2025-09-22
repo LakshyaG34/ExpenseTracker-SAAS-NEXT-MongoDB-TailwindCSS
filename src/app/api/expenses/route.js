@@ -4,7 +4,7 @@ import { dbConnect } from "@/lib/db";
 export async function POST(req){
     try{
         await dbConnect();
-        const { userId, amount, type, category, description, date } = await req.json();
+        const { userId, amount, type, categoryId, description, date } = await req.json();
 
         if(!userId || !amount || !type)
         {
@@ -17,7 +17,7 @@ export async function POST(req){
             user : userId,
             amount,
             type,
-            category,
+            category : categoryId,
             description,
             date : date || Date.now(),
         })
