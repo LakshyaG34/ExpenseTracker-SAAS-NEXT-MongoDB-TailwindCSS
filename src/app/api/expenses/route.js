@@ -1,12 +1,12 @@
-import Expense from "@/models/Expense";
-import { dbConnect } from "@/lib/db";
+import Expense from "../../../models/Expense";
+import { dbConnect } from "../../../lib/db";
 
 export async function POST(req){
     try{
         await dbConnect();
         const { userId, amount, type, categoryId, description, date } = await req.json();
 
-        if(!userId || !amount || !type)
+        if(!userId || !amount || !type || !categoryId)
         {
             return new Response(
                 JSON.stringify({error : "Missing fields"}),

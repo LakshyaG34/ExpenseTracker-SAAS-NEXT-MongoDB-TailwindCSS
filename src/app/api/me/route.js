@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken"
 import {cookies} from "next/headers"
-import User from "@/models/User";
 
 export async function GET(){
     try{

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useAuth } from "@/context/authContext";
+import { useAuth } from "../../context/authContext";
 import { FiMenu } from "react-icons/fi";
 
 const Navbar = () => {

@@ -1,5 +1,5 @@
-import User from "@/models/User"
-import { dbConnect } from "@/lib/db"
+import User from "../../../models/User"
+import { dbConnect } from "../../../lib/db"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 
