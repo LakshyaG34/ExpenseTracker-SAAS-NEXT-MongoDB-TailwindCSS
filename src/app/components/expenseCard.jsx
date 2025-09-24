@@ -3,7 +3,7 @@ import React from "react"
 
 const ExpenseCard = ({amount, type, date, category}) =>{
     return(
-        <div>
+        <div className="flex flex-col border border-white rounded-lg">
             <span>The {type} amount is Rs{amount}</span>
             <span>The expense date is {date}</span>
             <span>The category is {category}</span>

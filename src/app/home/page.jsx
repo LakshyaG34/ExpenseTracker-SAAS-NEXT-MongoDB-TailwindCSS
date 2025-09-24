@@ -7,7 +7,7 @@ const Home = () => {
   const [userId, setUserId] = useState("");
   const [expense, setExpense] = useState([]);
   const [categoryId, setCategoryId] = useState("");
-  
+
   useEffect(() => {
     const handleFetch = async () => {
       try {
@@ -35,7 +35,7 @@ const Home = () => {
     <div>
       <span>Welcome, {user?.name}!!!</span>
       <div>Total number of expenses :- {expense.length}</div>
-      <div>
+      <div className="flex flex-col justify-center items-center gap-2">
         {expense.length > 0 ? (
           expense.map((exp) => (
             <ExpenseCard
@@ -43,7 +43,7 @@ const Home = () => {
               amount={exp.amount}
               type={exp.type}
               date={exp.date}
-              category = {exp.category.name}
+              category={exp.category.name}
             />
           ))
         ) : (
