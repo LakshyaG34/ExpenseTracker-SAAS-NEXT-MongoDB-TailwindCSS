@@ -32,7 +32,7 @@ const Home = () => {
     handleFetch();
   }, []);
   return (
-    <div>
+    <div className = "bg-gray-300">
       <span>Welcome, {user?.name}!!!</span>
       <div>Total number of expenses :- {expense.length}</div>
       <div className="flex flex-col justify-center items-center gap-2">

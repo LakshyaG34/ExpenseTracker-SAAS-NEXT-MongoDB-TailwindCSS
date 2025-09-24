@@ -49,7 +49,7 @@ const addExpense = () => {
       if (!res.ok) {
         throw new Error("Error in response");
       }
-      toast.success("Expense Added Successfully")
+      toast.success("Expense Added Successfully!!!!")
       const data = await res.json();
       console.log(data);
       setAmount("");
