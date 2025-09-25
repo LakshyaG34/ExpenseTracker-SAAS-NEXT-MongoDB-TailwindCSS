@@ -4,53 +4,90 @@ import ExpenseCard from "../components/expenseCard";
 
 const Home = () => {
   const [user, setUser] = useState(null);
-  const [userId, setUserId] = useState("");
-  const [expense, setExpense] = useState([]);
+  const [expenses, setExpenses] = useState([]);
   const [categoryId, setCategoryId] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const handleFetch = async () => {
+    const fetchData = async () => {
       try {
         const resUser = await fetch("/api/me");
-        const resCategory = await fetch("/api/category");
         const userJson = await resUser.json();
-        const categoryJson = await resCategory.json();
-        if (userJson.isLoggedIn) {
-          setUser(userJson.user);
-          setUserId(userJson.user.id);
-          setCategoryId(categoryJson[0]._id);
-          const resExp = await fetch(
-            `/api/expenses?userId=${userJson.user.id}`
-          );
-          const expJson = await resExp.json();
-          setExpense(expJson);
+
+        if (!userJson.isLoggedIn) {
+          setError("User not logged in");
+          setLoading(false);
+          return;
         }
+
+        setUser(userJson.user);
+
+        const resCategory = await fetch("/api/category");
+        const categoryJson = await resCategory.json();
+        if (categoryJson.length > 0) {
+          setCategoryId(categoryJson[0]._id);
+        }
+
+        const resExp = await fetch(`/api/expenses?userId=${userJson.user.id}`);
+        const expJson = await resExp.json();
+        setExpenses(expJson);
       } catch (err) {
-        console.log(err);
+        console.error(err);
+        setError("Failed to fetch data. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
-    handleFetch();
+
+    fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen text-lg font-medium">
+        Loading your expenses...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen text-red-600 text-lg font-semibold">
+        {error}
+      </div>
+    );
+  }
+
   return (
-    <div className = "bg-gray-300">
-      <span>Welcome, {user?.name}!!!</span>
-      <div>Total number of expenses :- {expense.length}</div>
-      <div className="flex flex-col justify-center items-center gap-2">
-        {expense.length > 0 ? (
-          expense.map((exp) => (
-            <ExpenseCard
-              key={exp.id}
-              amount={exp.amount}
-              type={exp.type}
-              date={exp.date}
-              category={exp.category.name}
-            />
-          ))
-        ) : (
-          <p>No Expenses</p>
-        )}
+    <div className="bg-gray-100 min-h-screen py-8 px-4">
+      <div className="max-w-3xl mx-auto bg-white shadow-md rounded-2xl p-6">
+        <h1 className="text-2xl font-bold mb-2 text-gray-800">
+          Welcome, {user?.name}! 👋
+        </h1>
+        <p className="text-gray-600 mb-6">
+          Total number of expenses:{" "}
+          <span className="font-semibold">{expenses.length}</span>
+        </p>
+
+        <div className="flex flex-col gap-4">
+          {expenses.length > 0 ? (
+            expenses.map((exp) => (
+              <ExpenseCard
+                key={exp._id}
+                amount={exp.amount}
+                type={exp.type}
+                date={new Date(exp.date).toLocaleDateString()}
+                category={exp.category?.name || "Uncategorized"}
+              />
+            ))
+          ) : (
+            <p className="text-center text-gray-500">No expenses recorded yet.</p>
+          )}
+        </div>
       </div>
     </div>
   );
 };
+
 export default Home;

@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "./components/navbar"
 import { AuthProvider } from "../context/authContext";
 import { Toaster } from "react-hot-toast";
+// import {Suspense} from "react";
+// import Loading from "./Loading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +28,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
+        {/* <Loading/> */}
         <Navbar/>
         <Toaster position="top-right" reverseOrder={false}/>
         {children}
+        {/* </Suspense> */}
         </AuthProvider>
       </body>
     </html>

@@ -1,6 +1,5 @@
 import React from "react"
 
-
 const ExpenseCard = ({amount, type, date, category}) =>{
     return(
         <div className="w-full max-w-md mx-auto">
@@ -15,7 +14,6 @@ const ExpenseCard = ({amount, type, date, category}) =>{
                         : <span className="text-green-500">+ ₹{amount}</span>
                     }
                 </div>
-                
             </div>
         </div>
     )
