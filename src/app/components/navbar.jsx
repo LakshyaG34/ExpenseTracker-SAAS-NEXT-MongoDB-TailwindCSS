@@ -88,9 +88,19 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <button onClick={handleLogout} className="cursor-pointer">
-              LogOut
-            </button>
+            <Link href="/">Navbar</Link>
+            <div className = "flex flex-row items-center gap-4 px-2 py-1">
+              <button onClick={handleLogout} className="cursor-pointer">
+                LogOut
+              </button>
+              <Link href="/profile">
+                <img
+                    src={imgUrl || "/default-avatar.png"} // fallback avatar
+                    alt="Profile Picture"
+                    className="w-8 h-8 rounded-full object-cover" // size + rounded
+                />
+              </Link>
+            </div>
           </>
         )}
       </div>
