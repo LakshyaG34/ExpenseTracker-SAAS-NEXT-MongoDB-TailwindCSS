@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "../../context/authContext";
 import { FiMenu } from "react-icons/fi";
+import { BiPlusCircle } from "react-icons/bi";
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
@@ -33,11 +34,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="mt-2">
-      <div className="hidden md:flex flex-row justify-between">
+    <div className="bg-gray-300 text-black shadow-lg relative">
+      <div className="hidden md:flex flex-row justify-between items-center">
         {!isLoggedIn ? (
           <>
-            <Link href="/">Navbar</Link>
+            <Link href="/">LnG</Link>
             <div className="flex flex-row items-center gap-2">
               <Link href="/signup" className="border rounded-full px-1">
                 SIGN-UP
@@ -49,26 +50,29 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link href="/">Navbar</Link>
-            <div className = "flex flex-row items-center gap-4 px-2 py-1">
+            <Link href="/">LnG</Link>
+            <button>
+              <BiPlusCircle className="w-10 h-10"/>
+            </button>
+            <div className="flex flex-row items-center gap-4 px-2 py-1">
               <button onClick={handleLogout} className="cursor-pointer">
                 LogOut
               </button>
               <Link href="/profile">
                 <img
-                    src={imgUrl || "/default-avatar.png"} // fallback avatar
-                    alt="Profile Picture"
-                    className="w-8 h-8 rounded-full object-cover" // size + rounded
+                  src={imgUrl || "/default-avatar.png"} // fallback avatar
+                  alt="Profile Picture"
+                  className="w-8 h-8 rounded-full object-cover" // size + rounded
                 />
               </Link>
             </div>
           </>
         )}
       </div>
-      <div className="md:hidden flex flex-row justify-between">
+      <div className="md:hidden flex flex-row justify-between items-center">
         {!isLoggedIn ? (
           <>
-            <Link href="/">Navbar</Link>
+            <Link href="/">LnG</Link>
             <div className="flex flex-row items-center gap-2">
               <button onClick={handleOpen}>
                 {!isOpen ? (
@@ -88,16 +92,16 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link href="/">Navbar</Link>
-            <div className = "flex flex-row items-center gap-4 px-2 py-1">
+            <Link href="/">LnG</Link>
+            <div className="flex flex-row items-center gap-4 px-2 py-1">
               <button onClick={handleLogout} className="cursor-pointer">
                 LogOut
               </button>
               <Link href="/profile">
                 <img
-                    src={imgUrl || "/default-avatar.png"} // fallback avatar
-                    alt="Profile Picture"
-                    className="w-8 h-8 rounded-full object-cover" // size + rounded
+                  src={imgUrl || "/default-avatar.png"} // fallback avatar
+                  alt="Profile Picture"
+                  className="w-8 h-8 rounded-full object-cover" // size + rounded
                 />
               </Link>
             </div>

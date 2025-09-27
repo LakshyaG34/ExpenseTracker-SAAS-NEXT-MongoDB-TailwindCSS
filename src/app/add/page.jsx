@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { useAuth } from "../../context/authContext";
 
 const addExpense = () => {
   const [userId, setUserId] = useState("");
@@ -12,6 +13,16 @@ const addExpense = () => {
   const [description, setDescription] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
+  const {isLoggedIn} = useAuth();
+
+  if (!isLoggedIn) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-red-500 font-semibold text-lg">User not logged in</p>
+      </div>
+    );
+  }
+
   useEffect(() => {
     const handleFetch = async () => {
       try {
