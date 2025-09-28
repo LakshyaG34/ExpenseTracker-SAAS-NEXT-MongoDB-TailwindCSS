@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "../../context/authContext";
 import { FiMenu } from "react-icons/fi";
-import { BiPlusCircle } from "react-icons/bi";
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
@@ -51,9 +50,6 @@ const Navbar = () => {
         ) : (
           <>
             <Link href="/">LnG</Link>
-            <button>
-              <BiPlusCircle className="w-10 h-10"/>
-            </button>
             <div className="flex flex-row items-center gap-4 px-2 py-1">
               <button onClick={handleLogout} className="cursor-pointer">
                 LogOut

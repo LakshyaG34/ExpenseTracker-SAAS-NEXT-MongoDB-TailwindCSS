@@ -15,13 +15,6 @@ const addExpense = () => {
   const handleOpen = () => setOpen(!open);
   const {isLoggedIn} = useAuth();
 
-  if (!isLoggedIn) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-red-500 font-semibold text-lg">User not logged in</p>
-      </div>
-    );
-  }
 
   useEffect(() => {
     const handleFetch = async () => {
@@ -69,6 +62,13 @@ const addExpense = () => {
       console.log(err);
     }
   };
+  if (!isLoggedIn) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-red-500 font-semibold text-lg">User not logged in</p>
+      </div>
+    );
+  }
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">

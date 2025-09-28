@@ -1,6 +1,7 @@
 "use client"
 
 import React, {useState} from "react"
+import toast from "react-hot-toast";
 
 const Signup = () =>
 {
@@ -33,15 +34,20 @@ const Signup = () =>
             method : "POST",
             body : formData
         })
+        if(res.ok)
+        {
+            return toast.success("Signed Up successfully")
+        }
 
         const data = await res.json();
         console.log(data);
     }
 
     return(
-        <form onSubmit = {handleSubmit}>
+        <form onSubmit = {handleSubmit} className="bg-white text-black flex flex-col justify-center items-center min-h-screen gap-4">
             <input
             type="text"
+            className="text-gray-400 border border-red-500 rounded-xl p-2"
             name="name"
             placeholder="Name"
             value={form.name}
@@ -50,6 +56,7 @@ const Signup = () =>
             />
             <input
                 type="email"
+                className="text-gray-400 border border-red-500 rounded-xl p-2"
                 name="email"
                 placeholder="Email"
                 value={form.email}
@@ -58,6 +65,7 @@ const Signup = () =>
             />
             <input
                 type="password"
+                className="text-gray-400 border border-red-500 rounded-xl p-2"
                 name="password"
                 placeholder="Password"
                 value={form.password}
@@ -66,6 +74,7 @@ const Signup = () =>
             />
             <input
                 type="password"
+                className="text-gray-400 border border-red-500 rounded-xl p-2"
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 value={form.confirmPassword}
@@ -75,11 +84,12 @@ const Signup = () =>
 
             <input
                 type="file"
+                className="text-gray-400 border border-red-500 rounded-xl p-2"
                 accept="image/*"
                 onChange={(e) => setFile(e.target.files[0])}
             />
 
-            <button type="submit">Sign Up</button>
+            <button type="submit" className="cursor-pointer border border-green-400 rounded-full p-2 focus:outline-none focus:ring-red-200">Sign Up</button>
         </form>
     )
 }
