@@ -39,10 +39,10 @@ const Navbar = () => {
           <>
             <Link href="/">LnG</Link>
             <div className="flex flex-row items-center gap-2">
-              <Link href="/signup" className="border rounded-full px-1">
+              <Link href="/u/signup" className="border rounded-full px-1">
                 SIGN-UP
               </Link>
-              <Link href="/signin" className="border rounded-full px-1">
+              <Link href="/u/signin" className="border rounded-full px-1">
                 SIGN-IN
               </Link>
             </div>
@@ -54,7 +54,7 @@ const Navbar = () => {
               <button onClick={handleLogout} className="cursor-pointer">
                 LogOut
               </button>
-              <Link href="/profile">
+              <Link href="/u/profile">
                 <img
                   src={imgUrl || "/default-avatar.png"} // fallback avatar
                   alt="Profile Picture"
@@ -75,10 +75,10 @@ const Navbar = () => {
                   <FiMenu />
                 ) : (
                   <div className="flex flex-col gap-4">
-                    <Link href="#" className="border rounded-xl">
+                    <Link href="/u/signup" className="border rounded-xl">
                       Signup
                     </Link>
-                    <Link href="#" className="border rounded-xl">
+                    <Link href="/u/signin" className="border rounded-xl">
                       Signin
                     </Link>
                   </div>
@@ -93,7 +93,7 @@ const Navbar = () => {
               <button onClick={handleLogout} className="cursor-pointer">
                 LogOut
               </button>
-              <Link href="/profile">
+              <Link href="/u/profile">
                 <img
                   src={imgUrl || "/default-avatar.png"} // fallback avatar
                   alt="Profile Picture"

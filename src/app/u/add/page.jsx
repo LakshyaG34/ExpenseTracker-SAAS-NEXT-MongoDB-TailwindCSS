@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import toast from "react-hot-toast";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 
 const addExpense = () => {
   const [userId, setUserId] = useState("");

@@ -6,13 +6,13 @@ const Dashboard = () =>{
     return(
         <div className = "flex justify-center items-center">
             <div>
-                <Link href = "/home">HOME</Link>
+                <Link href = "/u/home">HOME</Link>
             </div>
             <div>
-                <Link href="/add"><BiPlusCircle/></Link>
+                <Link href="/u/add"><BiPlusCircle/></Link>
             </div>
             <div>
-                <Link href="/home">HOME</Link>
+                <Link href="/u/home">HOME</Link>
             </div>
         </div>
     )
