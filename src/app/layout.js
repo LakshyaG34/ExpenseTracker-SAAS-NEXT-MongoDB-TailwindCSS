@@ -1,10 +1,9 @@
 import "./globals.css";
-import Navbar from "./components/navbar"
+import Navbar from "./components/navbar";
 import { AuthProvider } from "../context/authContext";
 import { Toaster } from "react-hot-toast";
 import { Montserrat } from "next/font/google";
-// import {Suspense} from "react";
-// import Loading from "./Loading";
+import ReduxProvider from "./redux/reduxProvider";
 
 const montserrat = Montserrat({
   weight: ["400"],
@@ -22,15 +21,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${montserrat.variable} antialiased`}
-      >
+      <body className={`${montserrat.variable} antialiased`}>
         <AuthProvider>
-        {/* <Loading/> */}
-        <Navbar/>
-        <Toaster position="top-right" reverseOrder={false}/>
-        {children}
-        {/* </Suspense> */}
+          {/* <Loading/> */}
+          <Navbar />
+          <Toaster position="top-right" reverseOrder={false} />
+          {/* <Provider store={store}>{children}</Provider> */}
+          <ReduxProvider>
+          {children}
+          </ReduxProvider>
+          {/* </Suspense> */}
         </AuthProvider>
       </body>
     </html>

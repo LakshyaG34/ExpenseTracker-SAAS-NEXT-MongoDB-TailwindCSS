@@ -1,13 +1,19 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import ExpenseCard from "../components/expenseCard";
+import {useDispatch, useSelector} from "react-redux"
+import { setExpenses } from "../redux/expenseSlice";
+// import PieChart from "../components/piechart";
 
 const Home = () => {
   const [user, setUser] = useState(null);
-  const [expenses, setExpenses] = useState([]);
   const [categoryId, setCategoryId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
+  const expenses = useSelector((state) => state.expenses.list);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +37,7 @@ const Home = () => {
 
         const resExp = await fetch(`/api/expenses?userId=${userJson.user.id}`);
         const expJson = await resExp.json();
-        setExpenses(expJson);
+        dispatch(setExpenses(expJson));
       } catch (err) {
         console.error(err);
         setError("Failed to fetch data. Please try again later.");
@@ -41,7 +47,7 @@ const Home = () => {
     };
 
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return (
